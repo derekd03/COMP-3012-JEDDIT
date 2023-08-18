@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Comment</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <script src="/js/script.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="/subs/list/">Subreddit List</a>
+    </div>
+    <br>
+    <h1>Edit Comment</h1>
+    <br>
+    <br>
+    <form onsubmit="return validateComment()" action='/posts/show/<%= post.id %>/comments/edit/<%= comment.id %>'
+        method="POST">
+        <textarea name="description" id="comment-description" placeholder="Edit comment"
+            value="comment.description"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Post</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <script src="/js/script.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="/subs/list/">Subreddit List</a>
+    </div>
+    <br>
+    <h1>Delete Post?</h1>
+    <br>
+    <br>
+    <form method="post" action="/posts/delete/<%= post.id %>">
+        <button type="submit">Confirm</button>
+    </form>
+    <form method="get" action="/posts/show/<%= post.id %>">
+        <button type="submit">Cancel</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Post</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+  <script src="/js/script.js"></script>
+</head>
+
+<body>
+  <div class="nav">
+    <a href="/subs/list/">Subreddit List</a>
+  </div>
+  <br>
+  <form action="/posts/edit/<%= post_id %>" method="post">
+    <input type="text" name="title" placeholder="Title" oninput="checkFormFields()" />
+    <input type="text" name="description" placeholder="Description" oninput="checkFormFields()" />
+    <input type="text" name="link" placeholder="Link" oninput="checkFormFields()" />
+    <button id="editPostBtn" disabled>Edit Post</button>
+  </form>
+
+  <script>
+    function checkFormFields() {
+
+      const title = document.getElementsByName("title")[0].value;
+      const description = document.getElementsByName("description")[0].value;
+      const link = document.getElementsByName("link")[0].value;
+      const editPostBtn = document.getElementById("editPostBtn");
+
+      if (title.trim() === "" || description.trim() === "" || link.trim() === "") {
+        editPostBtn.disabled = true;
+      } else {
+        editPostBtn.disabled = false;
+      }
+    }
+  </script>
+</body>
+
+</html>

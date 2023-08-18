@@ -1,0 +1,88 @@
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+}
+
+p {
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    max-width: 500px;
+}
+
+p:nth-child(odd) {
+    background-color: #F5F5F5;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #087cfc;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+    width: 120px;
+}
+
+button:hover {
+    background-color: #086ce4;
+    transition: background-color 10ms;
+}
+
+button:disabled {
+    background-color: lightblue;
+    cursor: default;
+}
+
+.buttons-form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.votes {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.upvote,
+.downvote {
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.nav {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    gap: 10px;
+}

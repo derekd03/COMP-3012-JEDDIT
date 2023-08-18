@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= post.title %>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <script src="/js/script.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="/subs/list/">Subreddit List</a>
+    </div>
+    <div style="padding-top: 20px;">
+        <div class="editdeleteForms <%= authenticated ? '' : 'hidden' %>">
+            <% if (authenticated && post.creator.id==user_id) { %>
+                <span>
+                    <form method="get" action="/posts/edit/<%= post.id %>">
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form method="get" action="/posts/deleteconfirm/<%= post.id %>">
+                        <button type="submit">Delete</button>
+                    </form>
+                </span>
+                <% } %>
+                    <p>
+                        <%= post.title %>
+                            <br>
+                            posted by: <%= post.creator.uname %>
+                                <br>
+                                r/<%= post.subgroup %>
+                                    <br>
+                                    <%= new Date(post.timestamp); %>
+                    </p>
+                    <p>
+                        <%= post.description %>
+                            <br>
+                            <br>
+                            <a href="<%= post.link %>">
+                                <%= post.link %>
+                            </a>
+                    </p>
+                    <p>
+                        Votes: <%= votes %>
+                    </p>
+                    <span>
+                        <form method="post" action="/posts/vote/<%= post.id %>">
+                            <input type="hidden" name="value" value="1">
+                            <button type="submit">&#9650;</button>
+                            <input type="hidden" name="votes" value="<%= votes %>">
+                        </form>
+                        <form method="post" action="/posts/vote/<%= post.id %>">
+                            <input type="hidden" name="value" value="-1">
+                            <button type="submit">&#9660;</button>
+                            <input type="hidden" name="votes" value="<%= votes %>">
+                        </form>
+                    </span>
+
+        </div>
+        <div class="commentForm <%= authenticated ? '' : 'hidden' %>">
+            <% if (authenticated) { %>
+                <form onsubmit="return validateComment()" action='/posts/<%= postid %>/comments' method="POST">
+                    <textarea name="description" id="comment-description" placeholder="Add a comment"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                <% } %>
+        </div>
+
+        <p>Comments</p>
+
+        <% if (post.comments.length> 0) { %>
+            <% post.comments.forEach((comment)=> { %>
+                <p>
+                    <a href="/posts/show/<%= post.id %>/comments/show/<%= comment.id %>">Show Full</a>
+
+                    <% if (comment.creator.id==user_id) { %>
+                        <a href="/posts/show/<%= post.id %>/comments/editconfirm/<%= comment.id %>">Edit</a>
+
+                        <% } %>
+                            <% if (comment.creator.id==user_id || post.creator.id==user_id) { %>
+                                <a href="/posts/show/<%= post.id %>/comments/deleteconfirm/<%= comment.id %>">Delete
+                                </a><br>
+                                <% } %>
+                                    <%= comment.creator.uname %>:
+                                        <br>
+                                        <%= new Date(comment.timestamp); %>:
+                                            <br>
+                                            <p>
+                                                <%= comment.description %>
+                                            </p>
+                </p>
+                <% }); %>
+                    <% } else { %>
+                        <p>No comments yet.</p>
+                        <% } %>
+
+    </div>
+</body>
+
+</html>
